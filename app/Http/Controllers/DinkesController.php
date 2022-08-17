@@ -32,8 +32,6 @@ class DinkesController extends Controller
          */
         $validation = $request->validate([
             'date' => 'required',
-            'terlaksana_kampanye_pencegahan_stunting' => 'required',
-            'keterangan_terlaksana_kampanye_pencegahan_stunting' => 'nullable|string',
             'kelurahan' => 'required',
             'kelurahan.*' => 'sometimes|numeric',
             'desa_kelurahan_melaksanakan_stbm' => 'required',
@@ -83,8 +81,6 @@ class DinkesController extends Controller
                 'tahun' => $tahun,
                 'bulan' => $bulan,
                 'kelurahan' => $request->kelurahan[$i],
-                'terlaksana_kampanye_pencegahan_stunting' => null,
-                'keterangan_terlaksana_kampanye_pencegahan_stunting' => null,
                 'desa_kelurahan_melaksanakan_stbm' => $request->desa_kelurahan_melaksanakan_stbm[$i],
                 'publikasi_tingkat_kabupaten_kota' => $request->publikasi_tingkat_kabupaten_kota[$i],
                 'terselenggara_audit_baduta_stunting' => $request->terselenggara_audit_baduta_stunting[$i],

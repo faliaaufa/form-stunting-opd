@@ -48,10 +48,10 @@
                                 <a class="nav-link active" data-toggle="pill" href="#kesehatan">Kesehatan (Data Supply)</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="pill" href="#">Data Stunting Balita</a>
+                                <a class="nav-link" data-toggle="pill" href="#DataStunting">Data Stunting Balita</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="pill" href="#">Remaja Putri (Anemia)</a>
+                                <a class="nav-link" data-toggle="pill" href="#RemajaPutri1">Remaja Putri (Anemia)</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" data-toggle="pill" href="#">Remaja Putri (TTD)</a>
@@ -167,9 +167,100 @@
                                     </table>
                                 </div>
                             </div>
+
+                            <!-- <div class="tab-pane fade" id="DataStunting">
+                                <div class="alert alert-info alert-dismissable fade show mt-3" role="alert">
+                                    Setiap kolom harus diisi. Bila ada data yang kosong, masukkan "0".
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="table-responsive" style="max-height: 60vh; overflow: scroll">
+                                    <table class="table table-striped table-bordered table-hover table-form">
+                                        <thead>
+                                            <tr>
+                                                <th>No.</th>
+                                                <th>Nama Desa</th>
+                                                <th>Jumlah Balita</th>
+                                                <th>JUMLAH BALITA SANGAT PENDEK</th>
+                                                <th>JUMLAH BALITA PENDEK</th>	
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @php
+                                                $i = 0;
+                                            @endphp
+                                                <tr>
+                                                    <td class="text-center">{{ ($i++) + 1 }}</td>
+                                                    <td>
+                                                        <input type="number" name="desa_kelurahan_terbebas_babs_odf[]" class="form-control" value="{{ old('desa_kelurahan_terbebas_babs_odf.'.$i-1) }}">
+                                                    </td>
+                                                    <td>
+                                                        <input type="number" name="persentase_sasaran_pemahaman_stunting[]" class="form-control" value="{{ old('persentase_sasaran_pemahaman_stunting.'.$i-1) }}">
+                                                    </td>
+                                                    <td>
+                                                        <input type="number" name="terpenuhi_standar_pemantauan_di_posyandu[]" class="form-control" value="{{ old('terpenuhi_standar_pemantauan_di_posyandu.'.$i-1) }}">
+                                                    </td>
+                                                    <td>
+                                                        <input type="number" name="tersedia_bidan_desa_kelurahan[]" class="form-control" value="{{ old('tersedia_bidan_desa_kelurahan.'.$i-1) }}">
+                                                    </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div> -->
+
+                            <!-- <div class="tab-pane fade" id="RemajaPutri1">
+                                <div class="alert alert-info alert-dismissable fade show mt-3" role="alert">
+                                    Setiap kolom harus diisi. Bila ada data yang kosong, masukkan "0".
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="table-responsive" style="max-height: 60vh; overflow: scroll">
+                                    <table class="table table-striped table-bordered table-hover table-form">
+                                        <thead>
+                                            <tr>
+                                                <th>No.</th>
+                                                <th>Kecamatan</th>
+                                                <th>Puskesmas</th>
+                                                <th>Kelurahan</th>
+                                                <th>Remaja putri yang di periksa Hb dengan satus anemia</th>
+                                                <th>Jumlah remaja putri anemia yang mendapatkan pelayanan pemeriksaan Hb</th>
+                                                <th>Persentase remaja putri menerima layanan pemeriksaan status anemia terhadap remaja putri dalam kurun waktu yang sama</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @php
+                                                $i = 0;
+                                            @endphp
+                                            @foreach($kelurahan as $kel)
+                                                <tr>
+                                                    <td class="text-center">{{ ($i++) + 1 }}</td>
+                                                    <td>{{ $kel->parent_kecamatan->kecamatan }}</td>
+                                                    <td>{{ $kel->parent_puskesmas->puskesmas}}</td>
+                                                    <td>
+                                                        {{ $kel->kelurahan }}
+                                                        <input type="hidden" name="kelurahan[]" value="{{ $kel->id }}" readonly>
+                                                    </td>
+                                                    <td>
+                                                        <input type="number" name="desa_kelurahan_melaksanakan_stbm[]" class="form-control" value="{{ old('desa_kelurahan_melaksanakan_stbm.'.$i-1) }}">
+                                                    </td>
+                                                    <td>
+                                                        <input type="number" name="publikasi_tingkat_kabupaten_kota[]" class="form-control" value="{{ old('publikasi_tingkat_kabupaten_kota.'.$i-1) }}">
+                                                    </td>
+                                                    <td>
+                                                        <input type="number" name="terselenggara_audit_baduta_stunting[]" class="form-control" value="{{ old('terselenggara_audit_baduta_stunting.'.$i-1) }}">
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div> -->
+
                             <button class="btn btn-outline-success mt-3 float-right">Submit</button>
                         </div>
-
                     </form>
                 </div>
             </div>
