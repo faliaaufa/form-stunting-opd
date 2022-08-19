@@ -9,7 +9,7 @@ class Dinkes extends Model
 {
     use HasFactory;
 
-    protected $table = 'opd_diskominfo';
+    protected $table = 'opd_dinkes';
 
     protected $fillable = [
         'tahun',
@@ -25,6 +25,12 @@ class Dinkes extends Model
         'desa_kelurahan_terbebas_babs_odf',
         'persentase_sasaran_pemahaman_stunting',
         'terpenuhi_standar_pemantauan_di_posyandu',
-        'tersedia_bidan_desa_kelurahan'
+        'tersedia_bidan_desa_kelurahan',
+        'jumlah_balita',
+        'jumlah_balita_sangat_pendek',
+        'jumlah_balita_pendek',
+        'remaja_putri_status_anemia',
+        'jumlah_remaja_putri_dapat_pelayanan',
+        'presentase_remaja_putri_anemia'
     ];
 }

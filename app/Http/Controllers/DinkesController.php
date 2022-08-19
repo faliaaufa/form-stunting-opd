@@ -50,6 +50,18 @@ class DinkesController extends Controller
             'terpenuhi_standar_pemantauan_di_posyandu.*' => 'sometimes|numeric',
             'tersedia_bidan_desa_kelurahan' => 'required',
             'tersedia_bidan_desa_kelurahan.*' => 'sometimes|numeric',
+            'jumlah_balita' => 'required',
+            'jumlah_balita.*' => 'sometimes|numeric',
+            'jumlah_balita_sangat_pendek' => 'required',
+            'jumlah_balita_sangat_pendek.*' => 'sometimes|numeric',
+            'jumlah_balita_pendek' => 'required',
+            'jumlah_balita_pendek.*' => 'sometimes|numeric',
+            'remaja_putri_status_anemia' => 'required',
+            'remaja_putri_status_anemia.*' => 'sometimes|numeric',
+            'jumlah_remaja_putri_dapat_pelayanan' => 'required',
+            'jumlah_remaja_putri_dapat_pelayanan.*' => 'sometimes|numeric',
+            'presentase_remaja_putri_anemia' => 'required',
+            'presentase_remaja_putri_anemia.*' => 'sometimes|numeric',
         ]);
         /**
          * Jika validasi gagal, kembali ke halaman sebelumnya dengan pesan error
@@ -89,6 +101,58 @@ class DinkesController extends Controller
                 'persentase_sasaran_pemahaman_stunting' => $request->persentase_sasaran_pemahaman_stunting[$i],
                 'terpenuhi_standar_pemantauan_di_posyandu' => $request->terpenuhi_standar_pemantauan_di_posyandu[$i],
                 'tersedia_bidan_desa_kelurahan' => $request->tersedia_bidan_desa_kelurahan[$i],
+                'jumlah_balita' => null,
+                'jumlah_balita_sangat_pendek' => null,
+                'jumlah_balita_pendek' => null,
+                'remaja_putri_status_anemia' => null,
+                'jumlah_remaja_putri_dapat_pelayanan' => null,
+                'presentase_remaja_putri_anemia' => null,
+            ]);
+        }
+
+        $data_stunting_balita = [];
+        for ($i = 0; $i < count($request->jumlah_balita); $i++){
+            array_push($data_stunting_balita, [
+                'tahun' => $tahun,
+                'bulan' => $bulan,
+                'kelurahan' => $request->kelurahan[$i],
+                'desa_kelurahan_melaksanakan_stbm' => null,
+                'publikasi_tingkat_kabupaten_kota' => null,
+                'terselenggara_audit_baduta_stunting' => null,
+                'kabupaten_kota_mengimplementasi_surveilans_gizi_elektronik' => null,
+                'desa_kelurahan_terbebas_babs_odf' => null,
+                'persentase_sasaran_pemahaman_stunting' => null,
+                'terpenuhi_standar_pemantauan_di_posyandu' => null,
+                'tersedia_bidan_desa_kelurahan' => null,
+                'jumlah_balita' => $request->jumlah_balita[$i],
+                'jumlah_balita_sangat_pendek' => $request->jumlah_balita_sangat_pendek[$i], 
+                'jumlah_balita_pendek' => $request->jumlah_balita_pendek[$i],
+                'remaja_putri_status_anemia' => null,
+                'jumlah_remaja_putri_dapat_pelayanan' => null,
+                'presentase_remaja_putri_anemia' => null,
+            ]);
+        }
+
+        $remaja_putri_anemia = [];
+        for ($i = 0; $i < count($request->remaja_putri_status_anemia); $i++){
+            array_push($remaja_putri_anemia, [
+                'tahun' => $tahun,
+                'bulan' => $bulan,
+                'kelurahan' => $request->kelurahan[$i],
+                'desa_kelurahan_melaksanakan_stbm' => null,
+                'publikasi_tingkat_kabupaten_kota' => null,
+                'terselenggara_audit_baduta_stunting' => null,
+                'kabupaten_kota_mengimplementasi_surveilans_gizi_elektronik' => null,
+                'desa_kelurahan_terbebas_babs_odf' => null,
+                'persentase_sasaran_pemahaman_stunting' => null,
+                'terpenuhi_standar_pemantauan_di_posyandu' => null,
+                'tersedia_bidan_desa_kelurahan' => null,
+                'jumlah_balita' => null,
+                'jumlah_balita_sangat_pendek' => null,
+                'jumlah_balita_pendek' => null,
+                'remaja_putri_status_anemia' => $request->remaja_putri_status_anemia[$i],
+                'jumlah_remaja_putri_dapat_pelayanan' => $request->jumlah_remaja_putri_dapat_pelayanan[$i],
+                'presentase_remaja_putri_anemia' => $request->presentase_remaja_putri_anemia[$i],
             ]);
         }
 
@@ -97,11 +161,13 @@ class DinkesController extends Controller
          * Untuk data per kelurahan menggunakan perintah upsert untuk batch insert
          */
         $per_kelurahan_insert = Dinkes::upsert($per_kelurahan_data, []);
+        $data_stunting_balita_insert = Dinkes::upsert($data_stunting_balita, []);
+        $remaja_putri_anemia_insert = Dinkes::upsert($remaja_putri_anemia, []);
 
         /**
          * Kembali ke halaman sebelumnya dengan pesan berhasil atau gagal
          */
-        if ($per_kelurahan_data) return redirect('/form/dinkes')->with('success', 'Data berhasil disimpan.');
+        if ($per_kelurahan_data && $data_stunting_balita && $remaja_putri_anemia) return redirect('/form/dinkes')->with('success', 'Data berhasil disimpan.');
 
         return back()->with('error', 'Gagal menyimpan data')->withInput();
     }

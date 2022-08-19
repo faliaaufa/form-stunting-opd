@@ -167,8 +167,8 @@
                                     </table>
                                 </div>
                             </div>
-
-                            <!-- <div class="tab-pane fade" id="DataStunting">
+                            
+                            <div class="tab-pane fade" id="DataStunting">
                                 <div class="alert alert-info alert-dismissable fade show mt-3" role="alert">
                                     Setiap kolom harus diisi. Bila ada data yang kosong, masukkan "0".
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -182,35 +182,38 @@
                                                 <th>No.</th>
                                                 <th>Nama Desa</th>
                                                 <th>Jumlah Balita</th>
-                                                <th>JUMLAH BALITA SANGAT PENDEK</th>
-                                                <th>JUMLAH BALITA PENDEK</th>	
+                                                <th>Jumlah Balita Sangat Pendek</th>
+                                                <th>Jumlah Balita Pendek</th>	
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @php
                                                 $i = 0;
                                             @endphp
+                                            @foreach($kelurahan as $kel)
                                                 <tr>
                                                     <td class="text-center">{{ ($i++) + 1 }}</td>
                                                     <td>
-                                                        <input type="number" name="desa_kelurahan_terbebas_babs_odf[]" class="form-control" value="{{ old('desa_kelurahan_terbebas_babs_odf.'.$i-1) }}">
+                                                        {{ $kel->kelurahan }}
+                                                        <input type="hidden" name="kelurahan[]" value="{{ $kel->id }}" readonly>
                                                     </td>
                                                     <td>
-                                                        <input type="number" name="persentase_sasaran_pemahaman_stunting[]" class="form-control" value="{{ old('persentase_sasaran_pemahaman_stunting.'.$i-1) }}">
+                                                        <input type="number" name="jumlah_balita[]" class="form-control" value="{{ old('jumlah_balita.'.$i-1) }}">
                                                     </td>
                                                     <td>
-                                                        <input type="number" name="terpenuhi_standar_pemantauan_di_posyandu[]" class="form-control" value="{{ old('terpenuhi_standar_pemantauan_di_posyandu.'.$i-1) }}">
+                                                        <input type="number" name="jumlah_balita_sangat_pendek[]" class="form-control" value="{{ old('jumlah_balita_sangat_pendek.'.$i-1) }}">
                                                     </td>
                                                     <td>
-                                                        <input type="number" name="tersedia_bidan_desa_kelurahan[]" class="form-control" value="{{ old('tersedia_bidan_desa_kelurahan.'.$i-1) }}">
+                                                        <input type="number" name="jumlah_balita_pendek[]" class="form-control" value="{{ old('jumlah_balita_pendek.'.$i-1) }}">
                                                     </td>
                                                 </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>
-                            </div> -->
+                            </div>
 
-                            <!-- <div class="tab-pane fade" id="RemajaPutri1">
+                            <div class="tab-pane fade" id="RemajaPutri1">
                                 <div class="alert alert-info alert-dismissable fade show mt-3" role="alert">
                                     Setiap kolom harus diisi. Bila ada data yang kosong, masukkan "0".
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -244,20 +247,20 @@
                                                         <input type="hidden" name="kelurahan[]" value="{{ $kel->id }}" readonly>
                                                     </td>
                                                     <td>
-                                                        <input type="number" name="desa_kelurahan_melaksanakan_stbm[]" class="form-control" value="{{ old('desa_kelurahan_melaksanakan_stbm.'.$i-1) }}">
+                                                        <input type="number" name="remaja_putri_status_anemia[]" class="form-control" value="{{ old('remaja_putri_status_anemia.'.$i-1) }}">
                                                     </td>
                                                     <td>
-                                                        <input type="number" name="publikasi_tingkat_kabupaten_kota[]" class="form-control" value="{{ old('publikasi_tingkat_kabupaten_kota.'.$i-1) }}">
+                                                        <input type="number" name="jumlah_remaja_putri_dapat_pelayanan[]" class="form-control" value="{{ old('jumlah_remaja_putri_dapat_pelayanan.'.$i-1) }}">
                                                     </td>
                                                     <td>
-                                                        <input type="number" name="terselenggara_audit_baduta_stunting[]" class="form-control" value="{{ old('terselenggara_audit_baduta_stunting.'.$i-1) }}">
+                                                        <input type="number" name="presentase_remaja_putri_anemia[]" class="form-control" value="{{ old('presentase_remaja_putri_anemia.'.$i-1) }}">
                                                     </td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
                                     </table>
                                 </div>
-                            </div> -->
+                            </div>
 
                             <button class="btn btn-outline-success mt-3 float-right">Submit</button>
                         </div>
